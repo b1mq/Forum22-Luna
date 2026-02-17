@@ -1,6 +1,5 @@
-
 {
-  "name": "Forum 22 Bad Urach - Cinema Portal",
-  "description": "A high-end React application for the Forum 22 cinema in Bad Urach, featuring weekly/monthly programs and ticketing simulations.",
+  "name": "Forum 22 Bad Urach - Premium Cinema Portal",
+  "description": "High-end React & TypeScript application for the Forum 22 and Luna cinemas.",
   "requestFramePermissions": []
 }

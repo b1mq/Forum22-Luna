@@ -13,10 +13,9 @@ import CinemaInfo from './pages/CinemaInfo';
 import CafeInfo from './pages/CafeInfo';
 import TeamInfo from './pages/TeamInfo';
 import SpecialEvents from './pages/SpecialEvents';
-import AIChatFloating from './components/AIChatFloating';
 
 const App: React.FC = () => {
-  const [currentPath, setCurrentPath] = useState(window.location.hash || '#/');
+  const [currentPath, setCurrentPath] = useState<string>(window.location.hash || '#/');
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -45,50 +44,33 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col selection:bg-[#7cb342] selection:text-white relative">
+    <div className="min-h-screen flex flex-col selection:bg-[#7cb342] selection:text-white">
       <Navbar />
       <main className="flex-1">
         {renderPage()}
       </main>
       <Footer />
       
-      {/* Floating Elements */}
-      <AIChatFloating />
-      
       <style>{`
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .animate-fadeIn { animation: fadeIn 0.3s ease-out forwards; }
+        .animate-fadeIn { animation: fadeIn 0.4s ease-out forwards; }
         
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .animate-fadeInUp { animation: fadeInUp 0.6s ease-out forwards; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fadeInUp { animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 
-        @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
-        .animate-fadeInLeft { animation: fadeInLeft 0.8s ease-out forwards; }
+        @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: translateX(0); } }
+        .animate-fadeInLeft { animation: fadeInLeft 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 
-        @keyframes fadeInRight { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
-        .animate-fadeInRight { animation: fadeInRight 0.8s ease-out forwards; }
+        @keyframes fadeInRight { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
+        .animate-fadeInRight { animation: fadeInRight 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 
-        .perspective-1000 { perspective: 1000px; }
-        .rotate-y-12 { transform: rotateY(12deg); }
-        .rotate-x-6 { transform: rotateX(6deg); }
-
-        /* Custom scrollbar for chat */
-        ::-webkit-scrollbar {
-          width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-          background: transparent;
-        }
-        ::-webkit-scrollbar-thumb {
-          background: #e2e8f0;
-          border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-          background: #cbd5e1;
-        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #7cb342; }
       `}</style>
     </div>
   );

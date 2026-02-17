@@ -13,7 +13,9 @@ export interface Movie {
   featured?: boolean;
   director?: string;
   cast?: string[];
-  labels?: string[]; // e.g. ["OmU", "Arthouse", "Highlight"]
+  labels?: string[];
+  // Fix: moodTags property added to match usage in constants.ts and support AI-driven filtering
+  moodTags?: string[];
 }
 
 export type CinemaLocation = 'forum' | 'luna';
@@ -26,6 +28,7 @@ export interface Showtime {
   location: CinemaLocation;
   label?: string;
   highlighted?: boolean;
+  fullDate: string;
 }
 
 export interface NavLink {
@@ -34,11 +37,10 @@ export interface NavLink {
   dropdown?: NavLink[];
 }
 
-export enum PageType {
-  HOME = 'home',
-  WEEKLY = 'weekly',
-  MONTHLY = 'monthly',
-  SERVICE = 'service',
-  CONTACT = 'contact',
-  PRICES = 'prices'
+export interface BookingState {
+  movieId: string;
+  time: string;
+  date: string;
+  tickets: number;
+  step: 'selection' | 'success';
 }
