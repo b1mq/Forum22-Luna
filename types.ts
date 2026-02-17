@@ -16,11 +16,14 @@ export interface Movie {
   labels?: string[]; // e.g. ["OmU", "Arthouse", "Highlight"]
 }
 
+export type CinemaLocation = 'forum' | 'luna';
+
 export interface Showtime {
   movieId: string;
   day: string;
   date: string;
   time: string;
+  location: CinemaLocation;
   label?: string;
   highlighted?: boolean;
 }

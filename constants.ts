@@ -65,13 +65,16 @@ const generateDates = () => {
 export const WEEK_DATES = generateDates();
 
 export const SHOWTIMES: (Showtime & { fullDate: string })[] = [
-  { movieId: '1', day: WEEK_DATES[0].dayLabel, date: WEEK_DATES[0].dateStr, fullDate: WEEK_DATES[0].fullDate, time: '19:30', highlighted: true },
-  { movieId: '2', day: WEEK_DATES[0].dayLabel, date: WEEK_DATES[0].dateStr, fullDate: WEEK_DATES[0].fullDate, time: '17:00' },
-  { movieId: '3', day: WEEK_DATES[0].dayLabel, date: WEEK_DATES[0].dateStr, fullDate: WEEK_DATES[0].fullDate, time: '15:00' },
-  { movieId: '1', day: WEEK_DATES[1].dayLabel, date: WEEK_DATES[1].dateStr, fullDate: WEEK_DATES[1].fullDate, time: '20:00' },
-  { movieId: '3', day: WEEK_DATES[1].dayLabel, date: WEEK_DATES[1].dateStr, fullDate: WEEK_DATES[1].fullDate, time: '16:00' },
-  { movieId: '2', day: WEEK_DATES[2].dayLabel, date: WEEK_DATES[2].dateStr, fullDate: WEEK_DATES[2].fullDate, time: '19:45', highlighted: true },
-  { movieId: '1', day: WEEK_DATES[2].dayLabel, date: WEEK_DATES[2].dateStr, fullDate: WEEK_DATES[2].fullDate, time: '17:30' },
+  // Forum 22 (Bad Urach)
+  { movieId: '1', day: WEEK_DATES[0].dayLabel, date: WEEK_DATES[0].dateStr, fullDate: WEEK_DATES[0].fullDate, time: '19:30', location: 'forum', highlighted: true },
+  { movieId: '2', day: WEEK_DATES[0].dayLabel, date: WEEK_DATES[0].dateStr, fullDate: WEEK_DATES[0].fullDate, time: '17:00', location: 'forum' },
+  { movieId: '1', day: WEEK_DATES[1].dayLabel, date: WEEK_DATES[1].dateStr, fullDate: WEEK_DATES[1].fullDate, time: '20:00', location: 'forum' },
+  
+  // Luna (Metzingen)
+  { movieId: '3', day: WEEK_DATES[0].dayLabel, date: WEEK_DATES[0].dateStr, fullDate: WEEK_DATES[0].fullDate, time: '15:00', location: 'luna', highlighted: true },
+  { movieId: '3', day: WEEK_DATES[1].dayLabel, date: WEEK_DATES[1].dateStr, fullDate: WEEK_DATES[1].fullDate, time: '16:00', location: 'luna' },
+  { movieId: '2', day: WEEK_DATES[2].dayLabel, date: WEEK_DATES[2].dateStr, fullDate: WEEK_DATES[2].fullDate, time: '19:45', location: 'luna', highlighted: true },
+  { movieId: '1', day: WEEK_DATES[2].dayLabel, date: WEEK_DATES[2].dateStr, fullDate: WEEK_DATES[2].fullDate, time: '17:30', location: 'luna' },
 ];
 
 export const NAVIGATION = [
