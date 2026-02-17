@@ -50,7 +50,7 @@ const generateDates = () => {
   const dates = [];
   const days = ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'];
   const now = new Date();
-  for (let i = 0; i < 14; i++) {
+  for (let i = 0; i < 30; i++) {
     const d = new Date();
     d.setDate(now.getDate() + i);
     dates.push({
@@ -62,24 +62,32 @@ const generateDates = () => {
   return dates;
 };
 
-export const WEEK_DATES = generateDates();
+export const MONTH_DATES = generateDates();
+export const WEEK_DATES = MONTH_DATES.slice(0, 14);
 
 export const SHOWTIMES: (Showtime & { fullDate: string })[] = [
   // Forum 22 (Bad Urach)
-  { movieId: '1', day: WEEK_DATES[0].dayLabel, date: WEEK_DATES[0].dateStr, fullDate: WEEK_DATES[0].fullDate, time: '19:30', location: 'forum', highlighted: true },
-  { movieId: '2', day: WEEK_DATES[0].dayLabel, date: WEEK_DATES[0].dateStr, fullDate: WEEK_DATES[0].fullDate, time: '17:00', location: 'forum' },
-  { movieId: '1', day: WEEK_DATES[1].dayLabel, date: WEEK_DATES[1].dateStr, fullDate: WEEK_DATES[1].fullDate, time: '20:00', location: 'forum' },
+  { movieId: '1', day: MONTH_DATES[0].dayLabel, date: MONTH_DATES[0].dateStr, fullDate: MONTH_DATES[0].fullDate, time: '19:30', location: 'forum', highlighted: true },
+  { movieId: '2', day: MONTH_DATES[0].dayLabel, date: MONTH_DATES[0].dateStr, fullDate: MONTH_DATES[0].fullDate, time: '17:00', location: 'forum' },
+  { movieId: '1', day: MONTH_DATES[1].dayLabel, date: MONTH_DATES[1].dateStr, fullDate: MONTH_DATES[1].fullDate, time: '20:00', location: 'forum' },
+  { movieId: '2', day: MONTH_DATES[10].dayLabel, date: MONTH_DATES[10].dateStr, fullDate: MONTH_DATES[10].fullDate, time: '18:00', location: 'forum', label: 'Spezial' },
   
   // Luna (Metzingen)
-  { movieId: '3', day: WEEK_DATES[0].dayLabel, date: WEEK_DATES[0].dateStr, fullDate: WEEK_DATES[0].fullDate, time: '15:00', location: 'luna', highlighted: true },
-  { movieId: '3', day: WEEK_DATES[1].dayLabel, date: WEEK_DATES[1].dateStr, fullDate: WEEK_DATES[1].fullDate, time: '16:00', location: 'luna' },
-  { movieId: '2', day: WEEK_DATES[2].dayLabel, date: WEEK_DATES[2].dateStr, fullDate: WEEK_DATES[2].fullDate, time: '19:45', location: 'luna', highlighted: true },
-  { movieId: '1', day: WEEK_DATES[2].dayLabel, date: WEEK_DATES[2].dateStr, fullDate: WEEK_DATES[2].fullDate, time: '17:30', location: 'luna' },
+  { movieId: '3', day: MONTH_DATES[0].dayLabel, date: MONTH_DATES[0].dateStr, fullDate: MONTH_DATES[0].fullDate, time: '15:00', location: 'luna', highlighted: true },
+  { movieId: '3', day: MONTH_DATES[5].dayLabel, date: MONTH_DATES[5].dateStr, fullDate: MONTH_DATES[5].fullDate, time: '16:00', location: 'luna' },
+  { movieId: '2', day: MONTH_DATES[12].dayLabel, date: MONTH_DATES[12].dateStr, fullDate: MONTH_DATES[12].fullDate, time: '20:15', location: 'luna', highlighted: true },
 ];
 
 export const NAVIGATION = [
   { label: 'Startseite', href: '/' },
-  { label: 'Programm', href: '/weekly' },
+  { 
+    label: 'Programm', 
+    href: '/weekly',
+    dropdown: [
+      { label: 'Wochenprogramm', href: '/weekly' },
+      { label: 'Monatsprogramm', href: '/monthly' }
+    ]
+  },
   {
     label: 'Über Uns',
     href: '/about',

@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import WeeklyProgram from './pages/WeeklyProgram';
+import MonthlyProgram from './pages/MonthlyProgram';
 import Contact from './pages/Contact';
 import ServicePrices from './pages/ServicePrices';
 import AboutJobs from './pages/AboutJobs';
@@ -12,6 +13,7 @@ import CinemaInfo from './pages/CinemaInfo';
 import CafeInfo from './pages/CafeInfo';
 import TeamInfo from './pages/TeamInfo';
 import SpecialEvents from './pages/SpecialEvents';
+import AIChatFloating from './components/AIChatFloating';
 
 const App: React.FC = () => {
   const [currentPath, setCurrentPath] = useState(window.location.hash || '#/');
@@ -29,6 +31,7 @@ const App: React.FC = () => {
     switch (currentPath) {
       case '#/': return <Home />;
       case '#/weekly': return <WeeklyProgram />;
+      case '#/monthly': return <MonthlyProgram />;
       case '#/contact': return <Contact />;
       case '#/about/jobs': return <AboutJobs />;
       case '#/about/cinema': return <CinemaInfo />;
@@ -42,12 +45,15 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col selection:bg-[#7cb342] selection:text-white">
+    <div className="min-h-screen flex flex-col selection:bg-[#7cb342] selection:text-white relative">
       <Navbar />
       <main className="flex-1">
         {renderPage()}
       </main>
       <Footer />
+      
+      {/* Floating Elements */}
+      <AIChatFloating />
       
       <style>{`
         .no-scrollbar::-webkit-scrollbar { display: none; }
@@ -68,6 +74,21 @@ const App: React.FC = () => {
         .perspective-1000 { perspective: 1000px; }
         .rotate-y-12 { transform: rotateY(12deg); }
         .rotate-x-6 { transform: rotateX(6deg); }
+
+        /* Custom scrollbar for chat */
+        ::-webkit-scrollbar {
+          width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+          background: #e2e8f0;
+          border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+          background: #cbd5e1;
+        }
       `}</style>
     </div>
   );
