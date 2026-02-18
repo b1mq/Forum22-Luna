@@ -17,15 +17,15 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div className="pt-0">
-      {/* Dual Hero Section */}
-      <section className="relative h-screen md:h-[90vh] flex flex-col md:flex-row overflow-hidden">
+    <div className="animate-fadeIn">
+      {/* Dual Hero Section - Added pt-[72px] for fixed navbar */}
+      <section className="relative min-h-screen md:min-h-[90vh] pt-[72px] md:pt-0 flex flex-col md:flex-row overflow-hidden">
         {/* Forum 22 Side (Deep Green) */}
         <div className="relative flex-1 group overflow-hidden transition-all duration-700 ease-in-out md:hover:flex-[1.2]">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1517604401157-5903553fd3ca?q=80&w=1200&auto=format&fit=crop')] bg-cover bg-center transition-transform duration-1000 group-hover:scale-110" />
           <div className="absolute inset-0 bg-gradient-to-br from-[#0f2416]/95 via-[#162e1e]/85 to-[#162e1e]/95" />
           
-          <div className="relative h-full flex flex-col justify-center items-center text-center p-10 z-10">
+          <div className="relative h-full flex flex-col justify-center items-center text-center p-10 z-10 py-16 md:py-10">
             <div className="mb-6 animate-fadeInUp">
               <span className="text-[#a2d149] font-black text-[11px] uppercase tracking-[0.5em]">Programmkino · Bad Urach</span>
             </div>
@@ -47,10 +47,9 @@ const Home: React.FC = () => {
         {/* Luna Metzingen Side (Amber Gold) */}
         <div className="relative flex-1 group overflow-hidden transition-all duration-700 ease-in-out md:hover:flex-[1.2]">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1200&auto=format&fit=crop')] bg-cover bg-center transition-transform duration-1000 group-hover:scale-110" />
-          {/* Улучшенный градиент для Luna: от теплого янтаря к насыщенному золоту */}
           <div className="absolute inset-0 bg-gradient-to-br from-[#ffb300]/95 via-[#ffc107]/85 to-[#ffca28]/95" />
           
-          <div className="relative h-full flex flex-col justify-center items-center text-center p-10 z-10">
+          <div className="relative h-full flex flex-col justify-center items-center text-center p-10 z-10 py-16 md:py-10">
             <div className="mb-6 animate-fadeInUp">
               <span className="text-[#1d3a28] font-black text-[11px] uppercase tracking-[0.5em]">Filmtheater · Metzingen</span>
             </div>
@@ -72,7 +71,6 @@ const Home: React.FC = () => {
 
       {/* Dual About Section */}
       <section className="py-24 bg-white relative overflow-hidden">
-        {/* Декоративный элемент фона */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-full bg-gray-100 hidden lg:block" />
         
         <div className="container mx-auto px-6">

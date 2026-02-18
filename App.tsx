@@ -20,7 +20,8 @@ const App: React.FC = () => {
   useEffect(() => {
     const handleHashChange = () => {
       setCurrentPath(window.location.hash || '#/');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Using 'instant' for better mobile experience during navigation
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     };
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
@@ -71,6 +72,9 @@ const App: React.FC = () => {
         ::-webkit-scrollbar-track { background: #f1f5f9; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: #7cb342; }
+
+        /* Ensure smooth tapping on mobile */
+        a, button { -webkit-tap-highlight-color: transparent; }
       `}</style>
     </div>
   );

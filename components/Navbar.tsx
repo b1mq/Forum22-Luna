@@ -1,18 +1,41 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NAVIGATION } from '../constants';
 
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  // Prevent scrolling when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [isMobileMenuOpen]);
+
+  // Fix: Automatically close mobile menu when window is resized to desktop width
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) { // 768px is Tailwind's 'md' breakpoint
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const closeMenu = () => setIsMobileMenuOpen(false);
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#1d3a28]/95 backdrop-blur-xl shadow-lg py-4 transition-none">
-      <div className="container mx-auto px-6 flex justify-between items-center">
-        <a href="#/" className="flex items-center gap-3 group">
+    <nav className="fixed top-0 left-0 right-0 z-[100] bg-[#1d3a28]/95 backdrop-blur-xl shadow-lg h-[72px] flex items-center">
+      <div className="container mx-auto px-6 flex justify-between items-center w-full">
+        <a href="#/" onClick={closeMenu} className="flex items-center gap-3 group relative z-[110]">
           <div className="w-10 h-10 bg-[#7cb342] rounded-xl flex items-center justify-center text-white font-display font-bold text-xl shadow-lg group-hover:rotate-12 transition-transform">
             22
           </div>
-          <span className="text-white text-2xl font-bold font-display tracking-tight group-hover:text-[#9ccc65] transition-colors">
+          <span className="text-white text-xl md:text-2xl font-bold font-display tracking-tight group-hover:text-[#9ccc65] transition-colors">
             Forum 22
           </span>
         </a>
@@ -55,50 +78,68 @@ const Navbar: React.FC = () => {
           </a>
         </div>
 
-        {/* Mobile toggle */}
+        {/* Mobile toggle button - Raised Z-index */}
         <button 
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden text-white p-2"
+          className="md:hidden relative z-[110] text-white p-2 outline-none"
+          aria-label="Toggle Menu"
         >
-          <div className="w-6 h-5 flex flex-col justify-between">
-            <span className={`w-full h-0.5 bg-white transition-all ${isMobileMenuOpen ? 'rotate-45 translate-y-2.5' : ''}`}></span>
-            <span className={`w-full h-0.5 bg-white transition-all ${isMobileMenuOpen ? 'opacity-0' : ''}`}></span>
-            <span className={`w-full h-0.5 bg-white transition-all ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+          <div className="w-6 h-5 flex flex-col justify-between items-end">
+            <span className={`h-0.5 bg-white transition-all duration-300 ${isMobileMenuOpen ? 'w-full rotate-45 translate-y-2' : 'w-full'}`}></span>
+            <span className={`h-0.5 bg-white transition-all duration-300 ${isMobileMenuOpen ? 'w-0 opacity-0' : 'w-4/5'}`}></span>
+            <span className={`h-0.5 bg-white transition-all duration-300 ${isMobileMenuOpen ? 'w-full -rotate-45 -translate-y-2.5' : 'w-2/3'}`}></span>
           </div>
         </button>
       </div>
 
-      {/* Mobile Menu */}
-      <div className={`md:hidden absolute top-full left-0 right-0 bg-[#1d3a28] border-t border-white/10 transition-all duration-500 overflow-hidden ${
-        isMobileMenuOpen ? 'max-h-screen py-10 opacity-100' : 'max-h-0 py-0 opacity-0'
-      }`}>
-        <div className="flex flex-col space-y-6 px-10">
-          {NAVIGATION.map((link) => (
-            <div key={link.label} className="flex flex-col space-y-3">
-              <a 
-                key={link.label} 
-                href={`#${link.href}`}
-                onClick={() => !link.dropdown && setIsMobileMenuOpen(false)}
-                className="text-white text-2xl font-display font-bold"
-              >
-                {link.label}
-              </a>
-              {link.dropdown && (
-                <div className="flex flex-col space-y-2 pl-4 border-l border-[#7cb342]/30">
-                  {link.dropdown.map(item => (
-                    <a 
-                      key={item.label}
-                      href={`#${item.href}`}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className="text-white/50 hover:text-white transition-colors py-1"
-                    >
-                      {item.label}
-                    </a>
-                  ))}
-                </div>
-              )}
+      {/* Mobile Menu Overlay */}
+      <div 
+        className={`md:hidden absolute top-0 left-0 w-full h-screen bg-[#1d3a28] z-[100] transition-all duration-500 ease-in-out transform ${
+          isMobileMenuOpen ? 'translate-y-0 opacity-100 pointer-events-auto' : '-translate-y-full opacity-0 pointer-events-none'
+        }`}
+      >
+        <div className="flex flex-col h-full pt-24 px-10 overflow-y-auto">
+          <div className="flex flex-col space-y-8">
+            {NAVIGATION.map((link) => (
+              <div key={link.label} className="flex flex-col space-y-4">
+                <a 
+                  href={`#${link.href}`}
+                  onClick={closeMenu}
+                  className="text-white text-3xl font-display font-bold hover:text-[#7cb342] transition-colors"
+                >
+                  {link.label}
+                </a>
+                {link.dropdown && (
+                  <div className="flex flex-col space-y-3 pl-4 border-l-2 border-[#7cb342]/30">
+                    {link.dropdown.map(item => (
+                      <a 
+                        key={item.label}
+                        href={`#${item.href}`}
+                        onClick={closeMenu}
+                        className="text-white/50 hover:text-white transition-colors text-lg"
+                      >
+                        {item.label}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+          
+          <div className="mt-auto mb-12 pt-10">
+            <a 
+              href="#/weekly" 
+              onClick={closeMenu}
+              className="block w-full text-center bg-[#7cb342] text-white py-5 rounded-2xl font-bold uppercase tracking-widest shadow-xl"
+            >
+              Tickets Buchen
+            </a>
+            <div className="mt-8 flex justify-center space-x-6 grayscale opacity-50">
+               <span className="text-white text-xs">Instagram</span>
+               <span className="text-white text-xs">Facebook</span>
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </nav>
