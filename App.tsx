@@ -31,6 +31,7 @@ const App: React.FC = () => {
     switch (currentPath) {
       case '#/': return <Home />;
       case '#/weekly': return <WeeklyProgram />;
+      case '#/weekly-luna': return <WeeklyProgram initialLocation="luna" />;
       case '#/monthly': return <MonthlyProgram />;
       case '#/contact': return <Contact />;
       case '#/about/jobs': return <AboutJobs />;

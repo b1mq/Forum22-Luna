@@ -58,7 +58,7 @@ const Home: React.FC = () => {
               Großes Kino, modernste Technik und die neuesten Blockbuster für die ganze Familie.
             </p>
             <a 
-              href="#/weekly" 
+              href="#/weekly-luna" 
               className="group/btn bg-[#1d3a28] text-white px-12 py-5 rounded-full font-bold text-lg hover:bg-[#ffb300] hover:text-[#1d3a28] transition-all transform hover:scale-105 shadow-[0_10px_30px_rgba(29,58,40,0.2)] flex items-center gap-3"
             >
               Aktuelles Programm
