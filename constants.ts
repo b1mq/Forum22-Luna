@@ -10,13 +10,14 @@ export const MOVIES: Movie[] = [
     director: 'Walter Salles',
     cast: ['Fernanda Torres', 'Selton Mello'],
     description: 'Ein berührendes Porträt einer Familie im Brasilien der 70er Jahre.',
-    fullSynopsis: 'Rio de Janeiro, 1971. Die Familie Paiva genießt ihr Leben, bis der Vater plötzlich von der Militärpolizei verschleppt wird. Die Mutter Eunice muss über sich hinauswachsen, um ihre fünf Kinder zu schützen und die Hoffnung auf Gerechtigkeit nicht zu verlieren. Ein Meisterwerk über Mut и menschliche Würde.',
+    fullSynopsis: 'Rio de Janeiro, 1971. Die Familie Paiva genießt ihr Leben, bis der Vater plötzlich von der Militärpolizei verschleppt wird. Die Mutter Eunice muss über sich hinauswachsen, um ihre fünf Kinder zu schützen и die Hoffnung auf Gerechtigkeit nicht zu verlieren. Ein Meisterwerk über Mut и menschliche Würde.',
     duration: 135,
     fsk: 12,
     posterUrl: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=800&auto=format&fit=crop',
     isNew: true,
     featured: true,
-    labels: ['Arthouse', 'OmU', 'Oscar-Kandidat']
+    labels: ['Arthouse', 'OmU', 'Oscar-Kandidat'],
+    moodTags: ['emotional', 'nachdenklich', 'historisch', 'familie']
   },
   {
     id: '2',
@@ -29,7 +30,8 @@ export const MOVIES: Movie[] = [
     duration: 105,
     fsk: 12,
     posterUrl: 'https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=80&w=800&auto=format&fit=crop',
-    labels: ['Arthouse', 'Preisträger']
+    labels: ['Arthouse', 'Preisträger'],
+    moodTags: ['bedrückend', 'wichtig', 'künstlerisch']
   },
   {
     id: '3',
@@ -42,7 +44,22 @@ export const MOVIES: Movie[] = [
     duration: 96,
     fsk: 0,
     posterUrl: 'https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=800&auto=format&fit=crop',
-    labels: ['Blockbuster', 'Familienkino']
+    labels: ['Blockbuster', 'Familienkino'],
+    moodTags: ['lustig', 'optimistisch', 'kinderfreundlich', 'bunt']
+  },
+  {
+    id: '4',
+    title: 'Dune: Part Two',
+    genre: 'Sci-Fi · Epos',
+    meta: 'USA 2024',
+    director: 'Denis Villeneuve',
+    description: 'Paul Atreides vereint sich mit Chani und den Fremen auf einem Rachefeldzug.',
+    duration: 166,
+    fsk: 12,
+    posterUrl: 'https://images.unsplash.com/photo-1509281373149-e957c6296406?q=80&w=800&auto=format&fit=crop',
+    featured: true,
+    labels: ['Spektakel', 'Highlight'],
+    moodTags: ['episch', 'actionreich', 'spannend']
   }
 ];
 
@@ -65,17 +82,11 @@ const generateDates = () => {
 export const MONTH_DATES = generateDates();
 export const WEEK_DATES = MONTH_DATES.slice(0, 14);
 
-export const SHOWTIMES: (Showtime & { fullDate: string })[] = [
-  // Forum 22 (Bad Urach)
+export const SHOWTIMES: Showtime[] = [
   { movieId: '1', day: MONTH_DATES[0].dayLabel, date: MONTH_DATES[0].dateStr, fullDate: MONTH_DATES[0].fullDate, time: '19:30', location: 'forum', highlighted: true },
   { movieId: '2', day: MONTH_DATES[0].dayLabel, date: MONTH_DATES[0].dateStr, fullDate: MONTH_DATES[0].fullDate, time: '17:00', location: 'forum' },
-  { movieId: '1', day: MONTH_DATES[1].dayLabel, date: MONTH_DATES[1].dateStr, fullDate: MONTH_DATES[1].fullDate, time: '20:00', location: 'forum' },
-  { movieId: '2', day: MONTH_DATES[10].dayLabel, date: MONTH_DATES[10].dateStr, fullDate: MONTH_DATES[10].fullDate, time: '18:00', location: 'forum', label: 'Spezial' },
-  
-  // Luna (Metzingen)
+  { movieId: '4', day: MONTH_DATES[1].dayLabel, date: MONTH_DATES[1].dateStr, fullDate: MONTH_DATES[1].fullDate, time: '20:15', location: 'luna', highlighted: true },
   { movieId: '3', day: MONTH_DATES[0].dayLabel, date: MONTH_DATES[0].dateStr, fullDate: MONTH_DATES[0].fullDate, time: '15:00', location: 'luna', highlighted: true },
-  { movieId: '3', day: MONTH_DATES[5].dayLabel, date: MONTH_DATES[5].dateStr, fullDate: MONTH_DATES[5].fullDate, time: '16:00', location: 'luna' },
-  { movieId: '2', day: MONTH_DATES[12].dayLabel, date: MONTH_DATES[12].dateStr, fullDate: MONTH_DATES[12].fullDate, time: '20:15', location: 'luna', highlighted: true },
 ];
 
 export const NAVIGATION = [
@@ -94,6 +105,7 @@ export const NAVIGATION = [
     dropdown: [
       { label: 'Das Kino', href: '/about/cinema' },
       { label: 'Das Café', href: '/about/cafe' },
+      { label: 'Philosophie & SJR', href: '/about/philosophy' },
       { label: 'Unser Team', href: '/about/team' },
       { label: 'Jobs & Ehrenamt', href: '/about/jobs' }
     ]
@@ -104,8 +116,20 @@ export const NAVIGATION = [
     dropdown: [
       { label: 'Eintrittspreise', href: '/service/prices' },
       { label: 'Gutscheine', href: '/service/vouchers' },
+      { label: 'Kino & Café mieten', href: '/service/rent' },
+      { label: 'Werbung im Kino', href: '/service/advertising' },
       { label: 'Sondervorstellungen', href: '/service/special-events' },
       { label: 'Anfahrt', href: '/contact' }
+    ]
+  },
+  {
+    label: 'Download',
+    href: '/download/program',
+    dropdown: [
+      { label: 'Programm (PDF)', href: '/download/program' },
+      { label: 'Antrag Patenschaft', href: '/download/patenschaft' },
+      { label: 'Antrag Förderverein', href: '/download/foerderverein' },
+      { label: 'Programm-Abo', href: '/download/abo' }
     ]
   },
   { label: 'Kontakt', href: '/contact' }

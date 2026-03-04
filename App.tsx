@@ -13,6 +13,13 @@ import CinemaInfo from './pages/CinemaInfo';
 import CafeInfo from './pages/CafeInfo';
 import TeamInfo from './pages/TeamInfo';
 import SpecialEvents from './pages/SpecialEvents';
+import SJRPhilosophy from './pages/SJRPhilosophy';
+import DownloadProgram from './pages/DownloadProgram';
+import PatenschaftForm from './pages/PatenschaftForm';
+import FoerdervereinForm from './pages/FoerdervereinForm';
+import ProgrammAboForm from './pages/ProgrammAboForm';
+import RentCinema from './pages/RentCinema';
+import CinemaAdvertising from './pages/CinemaAdvertising';
 
 const App: React.FC = () => {
   const [currentPath, setCurrentPath] = useState<string>(window.location.hash || '#/');
@@ -30,17 +37,26 @@ const App: React.FC = () => {
   const renderPage = () => {
     switch (currentPath) {
       case '#/': return <Home />;
-      case '#/weekly': return <WeeklyProgram />;
-      case '#/weekly-luna': return <WeeklyProgram initialLocation="luna" />;
+      case '#/weekly':
+      case '#/weekly/forum':
+      case '#/weekly/luna':
+        return <WeeklyProgram />;
       case '#/monthly': return <MonthlyProgram />;
       case '#/contact': return <Contact />;
       case '#/about/jobs': return <AboutJobs />;
       case '#/about/cinema': return <CinemaInfo />;
       case '#/about/cafe': return <CafeInfo />;
       case '#/about/team': return <TeamInfo />;
+      case '#/about/philosophy': return <SJRPhilosophy />;
+      case '#/download/program': return <DownloadProgram />;
+      case '#/download/patenschaft': return <PatenschaftForm />;
+      case '#/download/foerderverein': return <FoerdervereinForm />;
+      case '#/download/abo': return <ProgrammAboForm />;
       case '#/service/prices': return <ServicePrices />;
       case '#/service/vouchers': return <Vouchers />;
       case '#/service/special-events': return <SpecialEvents />;
+      case '#/service/rent': return <RentCinema />;
+      case '#/service/advertising': return <CinemaAdvertising />;
       default: return <Home />;
     }
   };

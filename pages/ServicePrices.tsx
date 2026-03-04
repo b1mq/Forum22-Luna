@@ -51,6 +51,23 @@ const ServicePrices: React.FC = () => {
           </div>
         </div>
 
+        <div className="mt-16 max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="bg-white p-10 rounded-[40px] border border-gray-100 shadow-sm">
+            <h3 className="text-2xl font-display text-[#1d3a28] mb-6">Patenschaft</h3>
+            <p className="text-gray-600 mb-6 text-sm leading-relaxed">
+              Unterstützen Sie unser Programmkino mit einer Patenschaft (100 €/Jahr). Sie erhalten 10 Freikarten и Ihr Name wird (auf Wunsch) vor jeder Vorstellung auf der Leinwand gezeigt.
+            </p>
+            <a href="#/contact" className="inline-block bg-[#7cb342] text-white px-8 py-3 rounded-full font-bold text-sm hover:shadow-lg transition-all">Pate werden</a>
+          </div>
+          <div className="bg-white p-10 rounded-[40px] border border-gray-100 shadow-sm">
+            <h3 className="text-2xl font-display text-[#1d3a28] mb-6">Förderverein</h3>
+            <p className="text-gray-600 mb-6 text-sm leading-relaxed">
+              Werden Sie Mitglied im Förderverein и unterstützen Sie den Erhalt der Kinokultur in Bad Urach и Metzingen. Ihr Beitrag hilft uns, Technik и Programm auf Top-Niveau zu halten.
+            </p>
+            <a href="#/contact" className="inline-block border-2 border-[#1d3a28] text-[#1d3a28] px-8 py-3 rounded-full font-bold text-sm hover:bg-[#1d3a28] hover:text-white transition-all">Mitglied werden</a>
+          </div>
+        </div>
+
         <div className="mt-16 max-w-4xl mx-auto bg-white p-10 rounded-[40px] border border-gray-100">
            <h3 className="text-2xl font-display text-[#1d3a28] mb-6">Hinweise</h3>
            <p className="text-gray-600 mb-4">

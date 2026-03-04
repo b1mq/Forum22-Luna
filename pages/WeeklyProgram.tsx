@@ -5,13 +5,12 @@ import MovieDetailModal from '../components/MovieDetailModal';
 import BookingModal from '../components/BookingModal';
 import { Movie, CinemaLocation } from '../types';
 
-interface WeeklyProgramProps {
-  initialLocation?: CinemaLocation;
-}
-
-const WeeklyProgram: React.FC<WeeklyProgramProps> = ({ initialLocation = 'forum' }) => {
+const WeeklyProgram: React.FC = () => {
   const [selectedDate, setSelectedDate] = useState(WEEK_DATES[0].fullDate);
-  const [selectedLocation, setSelectedLocation] = useState<CinemaLocation>(initialLocation);
+  const [selectedLocation, setSelectedLocation] = useState<CinemaLocation>(() => {
+    if (window.location.hash === '#/weekly/luna') return 'luna';
+    return 'forum';
+  });
   const [detailMovie, setDetailMovie] = useState<Movie | null>(null);
   const [bookingData, setBookingData] = useState<{ movie: Movie; time: string } | null>(null);
 

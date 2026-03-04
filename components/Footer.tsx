@@ -30,10 +30,13 @@ const Footer: React.FC = () => {
           </div>
         </div>
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-sm">
-          <p>&copy; {new Date().getFullYear()} Stadtjugendring Urach e.V.</p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="hover:text-white">Impressum</a>
-            <a href="#" target="_blank" className="hover:text-white">Datenschutz</a>
+          <div className="flex flex-col items-center md:items-start">
+            <p className="text-white/40 text-xs uppercase font-bold tracking-widest mb-1">Betreiber</p>
+            <p className="text-white/80 font-medium tracking-wide">Stadtjugendring Urach e.V.</p>
+          </div>
+          <div className="flex space-x-6 mt-6 md:mt-0">
+            <a href="#" className="hover:text-white transition-colors">Impressum</a>
+            <a href="#" target="_blank" className="hover:text-white transition-colors">Datenschutz</a>
           </div>
         </div>
       </div>

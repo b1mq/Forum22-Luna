@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { NAVIGATION } from '../constants';
+import { Instagram, Facebook } from 'lucide-react';
 
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -32,12 +33,17 @@ const Navbar: React.FC = () => {
     <nav className="fixed top-0 left-0 right-0 z-[100] bg-[#1d3a28]/95 backdrop-blur-xl shadow-lg h-[72px] flex items-center">
       <div className="container mx-auto px-6 flex justify-between items-center w-full">
         <a href="#/" onClick={closeMenu} className="flex items-center gap-3 group relative z-[110]">
-          <div className="w-10 h-10 bg-[#7cb342] rounded-xl flex items-center justify-center text-white font-display font-bold text-xl shadow-lg group-hover:rotate-12 transition-transform">
+          <div className="w-10 h-10 bg-[#7cb342] rounded-xl flex items-center justify-center text-white font-display font-bold text-xl shadow-lg group-hover:rotate-12 transition-transform shrink-0">
             22
           </div>
-          <span className="text-white text-xl md:text-2xl font-bold font-display tracking-tight group-hover:text-[#9ccc65] transition-colors">
-            Forum 22
-          </span>
+          <div className="flex flex-col">
+            <span className="text-white text-xl md:text-2xl font-bold font-display tracking-tight group-hover:text-[#9ccc65] transition-colors leading-none">
+              Forum 22
+            </span>
+            <span className="text-white/40 text-[9px] uppercase font-black tracking-[0.15em] mt-1 hidden sm:block">
+              Stadtjugendring Urach e.V.
+            </span>
+          </div>
         </a>
 
         {/* Desktop Nav */}
@@ -71,8 +77,28 @@ const Navbar: React.FC = () => {
           ))}
         </div>
 
-        {/* Action Button */}
-        <div className="hidden md:block">
+        {/* Action Button & Socials */}
+        <div className="hidden md:flex items-center space-x-6">
+          <div className="flex items-center space-x-4 border-r border-white/10 pr-6">
+            <a 
+              href="https://www.instagram.com/kino.forum22?igsh=MXZ4ejZndW1rOTZjdw==" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-white/60 hover:text-[#9ccc65] transition-colors"
+              aria-label="Instagram"
+            >
+              <Instagram size={18} />
+            </a>
+            <a 
+              href="https://www.facebook.com/p/forum22-kino-caf%C3%A9-kultur-100063694627441/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-white/60 hover:text-[#9ccc65] transition-colors"
+              aria-label="Facebook"
+            >
+              <Facebook size={18} />
+            </a>
+          </div>
           <a href="#/weekly" className="bg-[#7cb342] text-white px-6 py-3 rounded-full text-xs font-black uppercase tracking-widest hover:bg-white hover:text-[#1d3a28] transition-all shadow-lg hover:shadow-xl">
             Tickets
           </a>
@@ -127,6 +153,30 @@ const Navbar: React.FC = () => {
             ))}
           </div>
           
+          <div className="mt-12 pt-8 border-t border-white/10">
+            <span className="text-[#7cb342] font-black text-[10px] uppercase tracking-[0.3em] mb-6 block">Wir in Social Media</span>
+            <div className="flex space-x-8">
+               <a 
+                href="https://www.instagram.com/kino.forum22?igsh=MXZ4ejZndW1rOTZjdw==" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-white/60 hover:text-[#9ccc65] transition-colors flex flex-col items-center gap-2"
+               >
+                 <Instagram size={24} />
+                 <span className="text-[10px] uppercase font-bold tracking-widest">Instagram</span>
+               </a>
+               <a 
+                href="https://www.facebook.com/p/forum22-kino-caf%C3%A9-kultur-100063694627441/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-white/60 hover:text-[#9ccc65] transition-colors flex flex-col items-center gap-2"
+               >
+                 <Facebook size={24} />
+                 <span className="text-[10px] uppercase font-bold tracking-widest">Facebook</span>
+               </a>
+            </div>
+          </div>
+
           <div className="mt-auto mb-12 pt-10">
             <a 
               href="#/weekly" 
@@ -135,10 +185,6 @@ const Navbar: React.FC = () => {
             >
               Tickets Buchen
             </a>
-            <div className="mt-8 flex justify-center space-x-6 grayscale opacity-50">
-               <span className="text-white text-xs">Instagram</span>
-               <span className="text-white text-xs">Facebook</span>
-            </div>
           </div>
         </div>
       </div>

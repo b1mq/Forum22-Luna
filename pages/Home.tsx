@@ -26,15 +26,18 @@ const Home: React.FC = () => {
           <div className="absolute inset-0 bg-gradient-to-br from-[#0f2416]/95 via-[#162e1e]/85 to-[#162e1e]/95" />
           
           <div className="relative h-full flex flex-col justify-center items-center text-center p-10 z-10 py-16 md:py-10">
-            <div className="mb-6 animate-fadeInUp">
-              <span className="text-[#a2d149] font-black text-[11px] uppercase tracking-[0.5em]">Programmkino · Bad Urach</span>
+            <div className="mb-6 animate-fadeInUp flex flex-col items-center">
+              <span className="text-[#a2d149] font-black text-[11px] uppercase tracking-[0.5em] mb-3">Programmkino · Bad Urach</span>
+              <div className="px-4 py-1.5 bg-white/10 backdrop-blur-md rounded-full border border-white/10">
+                <span className="text-white/60 text-[9px] uppercase font-black tracking-[0.2em]">Ein Projekt des Stadtjugendring Urach e.V.</span>
+              </div>
             </div>
             <h1 className="text-5xl lg:text-8xl font-display font-bold text-white mb-6 drop-shadow-lg">Forum 22</h1>
             <p className="text-white/70 max-w-sm mb-12 font-light text-lg leading-relaxed">
               Entdecken Sie die Welt des anspruchsvollen Films in gemütlicher Atmosphäre.
             </p>
             <a 
-              href="#/weekly" 
+              href="#/weekly/forum" 
               className="group/btn bg-[#7cb342] text-white px-12 py-5 rounded-full font-bold text-lg hover:bg-white hover:text-[#1d3a28] transition-all transform hover:scale-105 shadow-[0_10px_30px_rgba(124,179,66,0.3)] flex items-center gap-3"
             >
               Aktuelles Programm
@@ -50,15 +53,18 @@ const Home: React.FC = () => {
           <div className="absolute inset-0 bg-gradient-to-br from-[#ffb300]/95 via-[#ffc107]/85 to-[#ffca28]/95" />
           
           <div className="relative h-full flex flex-col justify-center items-center text-center p-10 z-10 py-16 md:py-10">
-            <div className="mb-6 animate-fadeInUp">
-              <span className="text-[#1d3a28] font-black text-[11px] uppercase tracking-[0.5em]">Filmtheater · Metzingen</span>
+            <div className="mb-6 animate-fadeInUp flex flex-col items-center">
+              <span className="text-[#1d3a28] font-black text-[11px] uppercase tracking-[0.5em] mb-3">Filmtheater · Metzingen</span>
+              <div className="px-4 py-1.5 bg-[#1d3a28]/10 backdrop-blur-md rounded-full border border-[#1d3a28]/10">
+                <span className="text-[#1d3a28]/60 text-[9px] uppercase font-black tracking-[0.2em]">Ein Projekt des Stadtjugendring Urach e.V.</span>
+              </div>
             </div>
             <h1 className="text-5xl lg:text-8xl font-display font-bold text-[#1d3a28] mb-6 drop-shadow-sm">Luna</h1>
             <p className="text-[#1d3a28]/70 max-w-sm mb-12 font-light text-lg leading-relaxed">
               Großes Kino, modernste Technik und die neuesten Blockbuster für die ganze Familie.
             </p>
             <a 
-              href="#/weekly-luna" 
+              href="#/weekly/luna" 
               className="group/btn bg-[#1d3a28] text-white px-12 py-5 rounded-full font-bold text-lg hover:bg-[#ffb300] hover:text-[#1d3a28] transition-all transform hover:scale-105 shadow-[0_10px_30px_rgba(29,58,40,0.2)] flex items-center gap-3"
             >
               Aktuelles Programm
@@ -85,7 +91,7 @@ const Home: React.FC = () => {
                 Ein Ort für <br /><span className="italic font-normal">wahre Filmkunst.</span>
               </h2>
               <p className="text-gray-600 text-lg leading-relaxed mb-8">
-                Das Forum 22 wird seit 1983 mit viel Herzblut vom <strong>Stadtjugendring Urach e.V.</strong> betrieben. Als preisgekröntes Programmkino bieten wir Raum für Filme, die bewegen, inspirieren und nachwirken.
+                Das Forum 22 wird seit 1983 mit viel Herzblut vom <strong>Stadtjugendring Urach e.V.</strong> betrieben. Als preisgekröntes Programmkino bieten wir Raum für Filme, die bewegen, inspirieren und nachwirken – <span className="text-[#7cb342] font-semibold italic">100% ehrenamtlich, 100% Kultur.</span>
               </p>
               <div className="grid grid-cols-2 gap-6 mb-12">
                 <div className="border-l-2 border-[#7cb342] pl-4">
@@ -126,6 +132,43 @@ const Home: React.FC = () => {
               </div>
               <a href="#/contact" className="group text-[#1d3a28] font-bold border-b-2 border-[#ffc107] pb-1 hover:text-[#ffc107] transition-all">
                 Besuchen Sie uns in Metzingen
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Club Philosophy Section */}
+      <section className="py-24 bg-white border-y border-gray-100">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto text-center">
+            <span className="text-[#7cb342] font-black text-xs uppercase tracking-[0.4em] mb-6 block">Unsere Philosophie</span>
+            <h2 className="text-4xl md:text-5xl font-display text-[#1d3a28] mb-10 leading-tight">
+              Kino ist für uns <br /><span className="italic font-normal">soziale Verantwortung.</span>
+            </h2>
+            <p className="text-gray-600 text-lg leading-relaxed mb-12">
+              Der Stadtjugendring Urach e.V. betreibt das Forum 22 и das Luna Filmtheater nicht aus kommerziellem Interesse. Wir sind ein gemeinnütziger Verein, der Kultur erlebbar macht и Jugendlichen einen Raum zur Entfaltung bietet.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="p-8 bg-[#f8f9f5] rounded-[40px] text-center">
+                <div className="text-3xl mb-4">🤝</div>
+                <h4 className="font-bold text-[#1d3a28] mb-2">Ehrenamt</h4>
+                <p className="text-xs text-gray-500">Getragen von über 50 engagierten Menschen.</p>
+              </div>
+              <div className="p-8 bg-[#f8f9f5] rounded-[40px] text-center">
+                <div className="text-3xl mb-4">🌱</div>
+                <h4 className="font-bold text-[#1d3a28] mb-2">Jugendarbeit</h4>
+                <p className="text-xs text-gray-500">Verantwortung lernen и Kinoluft schnuppern.</p>
+              </div>
+              <div className="p-8 bg-[#f8f9f5] rounded-[40px] text-center">
+                <div className="text-3xl mb-4">🎭</div>
+                <h4 className="font-bold text-[#1d3a28] mb-2">Kultur pur</h4>
+                <p className="text-xs text-gray-500">Ausgezeichnetes Programm für die Region.</p>
+              </div>
+            </div>
+            <div className="mt-12">
+              <a href="#/about/philosophy" className="text-[#7cb342] font-bold border-b-2 border-[#7cb342] pb-1 hover:text-[#1d3a28] transition-all">
+                Mehr über unsere Geschichte erfahren
               </a>
             </div>
           </div>
