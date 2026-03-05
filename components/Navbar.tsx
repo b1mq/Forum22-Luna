@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { NAVIGATION } from '../constants';
-import { Instagram, Facebook } from 'lucide-react';
+import { Instagram, Facebook, Home as HomeIcon } from 'lucide-react';
 
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -149,7 +149,7 @@ const Navbar: React.FC = () => {
           ))}
         </div>
 
-        {/* Action Button & Socials */}
+        {/* Action Button & Socials (desktop) */}
         <div className="hidden md:flex items-center space-x-4 md:space-x-6">
           <div className="flex items-center space-x-4 border-r border-white/10 pr-6">
             <a
@@ -176,18 +176,33 @@ const Navbar: React.FC = () => {
           </a>
         </div>
 
-        {/* Mobile toggle button - Raised Z-index */}
-        <button
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden relative z-[110] text-white p-2 outline-none"
-          aria-label="Toggle Menu"
-        >
-          <div className="w-6 h-5 flex flex-col justify-between items-end">
-            <span className={`h-0.5 bg-white transition-all duration-300 ${isMobileMenuOpen ? 'w-full rotate-45 translate-y-2' : 'w-full'}`}></span>
-            <span className={`h-0.5 bg-white transition-all duration-300 ${isMobileMenuOpen ? 'w-0 opacity-0' : 'w-4/5'}`}></span>
-            <span className={`h-0.5 bg-white transition-all duration-300 ${isMobileMenuOpen ? 'w-full -rotate-45 -translate-y-2.5' : 'w-2/3'}`}></span>
-          </div>
-        </button>
+        {/* Mobile home + toggle buttons */}
+        <div className="md:hidden flex items-center gap-2 relative z-[110]">
+          <a
+            href="#/"
+            onClick={() => {
+              closeMenu();
+              setIsLogoMenuOpen(false);
+            }}
+            className="text-white p-2 outline-none"
+            aria-label="Zur Startseite"
+          >
+            <HomeIcon size={22} />
+          </a>
+
+          {/* Mobile toggle button - Raised Z-index */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="text-white p-2 outline-none"
+            aria-label="Toggle Menu"
+          >
+            <div className="w-6 h-5 flex flex-col justify-between items-end">
+              <span className={`h-0.5 bg-white transition-all duration-300 ${isMobileMenuOpen ? 'w-full rotate-45 translate-y-2' : 'w-full'}`}></span>
+              <span className={`h-0.5 bg-white transition-all duration-300 ${isMobileMenuOpen ? 'w-0 opacity-0' : 'w-4/5'}`}></span>
+              <span className={`h-0.5 bg-white transition-all duration-300 ${isMobileMenuOpen ? 'w-full -rotate-45 -translate-y-2.5' : 'w-2/3'}`}></span>
+            </div>
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu Overlay */}
