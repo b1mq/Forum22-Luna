@@ -32,7 +32,7 @@ const Navbar: React.FC = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-[100] bg-[#1d3a28]/95 backdrop-blur-xl shadow-lg h-[72px] flex items-center">
       <div className="container mx-auto px-6 flex justify-between items-center w-full">
-        <a href="#/" onClick={closeMenu} className="flex items-center gap-3 group relative z-[110]">
+        <div href="#/" onClick={closeMenu} className="flex items-center gap-3 group relative z-[110]">
           <div className="w-10 h-10 bg-red-500 rounded-xl flex items-center justify-center text-white font-display font-bold text-xl shadow-lg group-hover:rotate-12 transition-transform shrink-0">
             22
           </div>
@@ -50,7 +50,7 @@ const Navbar: React.FC = () => {
               Urach e.V.
             </span>
           </div>
-        </a>
+        </div>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center space-x-6 md:space-x-10">
