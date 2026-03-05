@@ -105,7 +105,6 @@ export const NAVIGATION = [
     dropdown: [
       { label: 'Das Kino', href: '/about/cinema' },
       { label: 'Das Café', href: '/about/cafe' },
-      { label: 'Philosophie & SJR', href: '/about/philosophy' },
       { label: 'Unser Team', href: '/about/team' },
       { label: 'Jobs & Ehrenamt', href: '/about/jobs' }
     ]

@@ -5,6 +5,7 @@ import { Instagram, Facebook } from 'lucide-react';
 
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLogoMenuOpen, setIsLogoMenuOpen] = useState(false);
 
   // Prevent scrolling when mobile menu is open
   useEffect(() => {
@@ -32,7 +33,11 @@ const Navbar: React.FC = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-[100] bg-[#1d3a28]/95 backdrop-blur-xl shadow-lg h-[72px] flex items-center">
       <div className="container mx-auto px-6 flex justify-between items-center w-full">
-        <div href="#/" onClick={closeMenu} className="flex items-center gap-3 group relative z-[110]">
+        <div
+          href="#/"
+          onClick={() => setIsLogoMenuOpen(prev => !prev)}
+          className="flex items-center gap-3 group relative z-[110] cursor-pointer"
+        >
           <div className="w-10 h-10 bg-red-500 rounded-xl flex items-center justify-center text-white font-display font-bold text-xl shadow-lg group-hover:rotate-12 transition-transform shrink-0">
             22
           </div>
@@ -50,6 +55,58 @@ const Navbar: React.FC = () => {
               Urach e.V.
             </span>
           </div>
+          {/* Desktop dropdown (hover) */}
+          <div className="hidden md:block absolute top-full left-0 mt-4 w-60 bg-[#3b0010] rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.7)] py-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-0 translate-y-2">
+            <div className="flex flex-col space-y-3 px-6">
+              <a
+                href="#geschichte"
+                className="text-white/90 hover:text-red-500 text-xs uppercase font-bold tracking-[0.2em] transition-all flex items-center gap-1"
+              >
+                Geschichte
+              </a>
+              <a
+                href="/#/about/philosophy"
+                className="text-white/90 hover:text-red-500 text-xs uppercase font-bold tracking-[0.2em] transition-all flex items-center gap-1"
+              >
+                Philosophie &amp; SJR
+              </a>
+              <a
+                href="#vorstand"
+                className="text-white/90 hover:text-red-500 text-xs uppercase font-bold tracking-[0.2em] transition-all flex items-center gap-1"
+              >
+                Vorstand
+              </a>
+            </div>
+          </div>
+
+          {/* Mobile dropdown (click) */}
+          {isLogoMenuOpen && (
+            <div className="md:hidden absolute top-full left-0 mt-3 w-60 bg-[#3b0010] rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.7)] py-4">
+              <div className="flex flex-col space-y-3 px-6">
+                <a
+                  href="#geschichte"
+                  onClick={() => setIsLogoMenuOpen(false)}
+                  className="text-white/90 hover:text-red-500 text-xs uppercase font-bold tracking-[0.2em] transition-all flex items-center gap-1"
+                >
+                  Geschichte
+                </a>
+                <a
+                  href="/#/about/philosophy"
+                  onClick={() => setIsLogoMenuOpen(false)}
+                  className="text-white/90 hover:text-red-500 text-xs uppercase font-bold tracking-[0.2em] transition-all flex items-center gap-1"
+                >
+                  Philosophie &amp; SJR
+                </a>
+                <a
+                  href="#vorstand"
+                  onClick={() => setIsLogoMenuOpen(false)}
+                  className="text-white/90 hover:text-red-500 text-xs uppercase font-bold tracking-[0.2em] transition-all flex items-center gap-1"
+                >
+                  Vorstand
+                </a>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Desktop Nav */}
