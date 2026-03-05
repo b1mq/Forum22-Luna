@@ -1,19 +1,24 @@
 
-import React from 'react';
+import React, { useState } from 'react';
+import AboutSidebar from '../components/AboutSidebar';
 
 const SJRPhilosophy: React.FC = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+
   return (
     <div className="pt-32 pb-24 bg-[#f8f9f5]">
+      <AboutSidebar onToggle={setSidebarOpen} />
       <div className="container mx-auto px-6">
-        <header className="mb-20 text-center max-w-4xl mx-auto animate-fadeInUp">
-          <span className="text-[#ef4444] font-black text-xs uppercase tracking-[0.4em] mb-4 block">Unsere Wurzeln</span>
-          <h1 className="text-5xl md:text-7xl font-display text-[#5a0017] mb-8 leading-tight">Stadtjugendring <br /><span className="italic font-normal">Urach e.V.</span></h1>
-          <p className="text-gray-500 text-lg leading-relaxed">
-            Seit 1955 das Herz der Jugend- и Kulturarbeit in Bad Urach. Ein Verein, der aus Leidenschaft für den Film и die Gemeinschaft entstanden ist.
-          </p>
-        </header>
+        <div className="flex flex-col">
+          <header className="mb-20 max-w-4xl mx-auto text-center animate-fadeInUp">
+              <span className="text-[#ef4444] font-black text-xs uppercase tracking-[0.4em] mb-4 block">Unsere Wurzeln</span>
+              <h1 className="text-5xl md:text-7xl font-display text-[#5a0017] mb-8 leading-tight">Stadtjugendring <br /><span className="italic font-normal">Urach e.V.</span></h1>
+              <p className="text-gray-500 text-lg leading-relaxed">
+                Seit 1955 das Herz der Jugend- и Kulturarbeit in Bad Urach. Ein Verein, der aus Leidenschaft für den Film и die Gemeinschaft entstanden ist.
+              </p>
+            </header>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-32 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-32 items-center mx-auto max-w-6xl">
           <div className="animate-fadeInLeft">
             <h2 className="text-3xl font-display text-[#5a0017] mb-6">Geschichte & Entstehung</h2>
             <div className="space-y-6 text-gray-600 leading-relaxed">
@@ -50,7 +55,7 @@ const SJRPhilosophy: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-[#3b0010] rounded-[60px] p-12 md:p-24 text-white relative overflow-hidden mb-32">
+        <div className="bg-[#3b0010] rounded-[60px] p-12 md:p-24 text-white relative overflow-hidden mb-32 mx-auto max-w-6xl">
           <div className="absolute top-0 right-0 w-1/2 h-full bg-[#7cb342]/5 -skew-x-12 translate-x-1/4" />
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16">
             <div>
@@ -97,6 +102,7 @@ const SJRPhilosophy: React.FC = () => {
             <a href="#/service/prices" className="bg-[#ef4444] text-white px-10 py-4 rounded-full font-bold hover:shadow-xl transition-all">Patenschaft & Förderung</a>
             <a href="#/about/jobs" className="bg-[#5a0017] text-white px-10 py-4 rounded-full font-bold hover:shadow-xl transition-all">Ehrenamtlich mitwirken</a>
           </div>
+        </div>
         </div>
       </div>
     </div>

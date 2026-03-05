@@ -5,7 +5,6 @@ import { Instagram, Facebook, Home as HomeIcon } from 'lucide-react';
 
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isLogoMenuOpen, setIsLogoMenuOpen] = useState(false);
 
   // Prevent scrolling when mobile menu is open
   useEffect(() => {
@@ -28,99 +27,38 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Close red logo dropdown when route (hash) changes
-  useEffect(() => {
-    const handleHashChange = () => {
-      setIsLogoMenuOpen(false);
-    };
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
-
   const closeMenu = () => setIsMobileMenuOpen(false);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-[100] bg-[#1d3a28]/95 backdrop-blur-xl shadow-lg h-[72px] flex items-center">
-      <div className="container mx-auto px-6 flex justify-between items-center w-full">
-        <div
-          href="#/"
-          onClick={() => setIsLogoMenuOpen(prev => !prev)}
-          className="flex items-center gap-3 group relative z-[110] cursor-pointer"
-        >
-          <div className="w-10 h-10 bg-red-500 rounded-xl flex items-center justify-center text-white font-display font-bold text-xl shadow-lg group-hover:rotate-12 transition-transform shrink-0">
-            22
-          </div>
-          <div className="flex flex-col">
-            <span
-              className="
-    text-white text-lg md:text-xl font-bold font-display tracking-tight
-    transition-all leading-none group-hover:text-red-500 block md:hidden xl:block"
-            >
-              Stadtjugendring
-            </span>
-            <span
-              className="text-white/40 text-[9px] uppercase font-black tracking-[0.15em] mt-1 hidden sm:block md:hidden xl:block"
-            >
-              Urach e.V.
-            </span>
-          </div>
-          {/* Desktop dropdown (hover) */}
-          <div className="hidden md:block absolute top-full left-0 mt-4 w-60 bg-[#3b0010] rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.7)] py-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-0 translate-y-2">
-            <div className="flex flex-col space-y-3 px-6">
-              <a
-                href="/#/about/history"
-                className="text-white/90 hover:text-red-500 text-xs uppercase font-bold tracking-[0.2em] transition-all flex items-center gap-1"
-              >
-                Geschichte
-              </a>
-              <a
-                href="/#/about/philosophy"
-                className="text-white/90 hover:text-red-500 text-xs uppercase font-bold tracking-[0.2em] transition-all flex items-center gap-1"
-              >
-                Philosophie &amp; SJR
-              </a>
-              <a
-                href="/#/about/vorstand"
-                className="text-white/90 hover:text-red-500 text-xs uppercase font-bold tracking-[0.2em] transition-all flex items-center gap-1"
-              >
-                Vorstand
-              </a>
+      <div className="container mx-auto px-3 md:px-6 flex justify-between items-center w-full">
+        {/* Home area (desktop + mobile) */}
+        <div className="flex items-center gap-3 relative z-[110]">
+          <a
+            href="#/"
+            onClick={closeMenu}
+            className="flex items-center justify-center text-white hover:text-[#9ccc65] p-2 md:p-0 md:-ml-4 transition-colors"
+            aria-label="Startseite"
+          >
+            <HomeIcon size={34} />
+          </a>
+          <a
+            href="#/about/history"
+            onClick={closeMenu}
+            className="flex items-center justify-center text-white p-2 md:p-0 transition-colors"
+            aria-label="History"
+          >
+            <div className="w-9 h-9 md:w-10 md:h-10 rounded-lg border-2 border-white flex items-center justify-center transition-colors duration-200 hover:bg-[#ef4444] hover:border-[#ef4444]">
+              <span className="font-display font-bold text-white text-xl leading-none">
+                22
+              </span>
             </div>
-          </div>
-
-          {/* Mobile dropdown (click) */}
-          {isLogoMenuOpen && (
-            <div className="md:hidden absolute top-full left-0 mt-3 w-60 bg-[#3b0010] rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.7)] py-4">
-              <div className="flex flex-col space-y-3 px-6">
-                <a
-                  href="/#/about/history"
-                  onClick={() => setIsLogoMenuOpen(false)}
-                  className="text-white/90 hover:text-red-500 text-xs uppercase font-bold tracking-[0.2em] transition-all flex items-center gap-1"
-                >
-                  Geschichte
-                </a>
-                <a
-                  href="/#/about/philosophy"
-                  onClick={() => setIsLogoMenuOpen(false)}
-                  className="text-white/90 hover:text-red-500 text-xs uppercase font-bold tracking-[0.2em] transition-all flex items-center gap-1"
-                >
-                  Philosophie &amp; SJR
-                </a>
-                <a
-                  href="/#/about/vorstand"
-                  onClick={() => setIsLogoMenuOpen(false)}
-                  className="text-white/90 hover:text-red-500 text-xs uppercase font-bold tracking-[0.2em] transition-all flex items-center gap-1"
-                >
-                  Vorstand
-                </a>
-              </div>
-            </div>
-          )}
+          </a>
         </div>
 
-        {/* Desktop Nav */}
+        {/* Desktop Nav (without Startseite) */}
         <div className="hidden md:flex items-center space-x-6 md:space-x-10">
-          {NAVIGATION.map((link) => (
+          {NAVIGATION.filter(link => link.label !== 'Startseite').map((link) => (
             <div key={link.label} className="relative group">
               <a
                 href={`#${link.href}`}
@@ -176,20 +114,8 @@ const Navbar: React.FC = () => {
           </a>
         </div>
 
-        {/* Mobile home + toggle buttons */}
+        {/* Mobile toggle button - Raised Z-index */}
         <div className="md:hidden flex items-center gap-2 relative z-[110]">
-          <a
-            href="#/"
-            onClick={() => {
-              closeMenu();
-              setIsLogoMenuOpen(false);
-            }}
-            className="text-white p-2 outline-none"
-            aria-label="Zur Startseite"
-          >
-            <HomeIcon size={22} />
-          </a>
-
           {/* Mobile toggle button - Raised Z-index */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -212,7 +138,7 @@ const Navbar: React.FC = () => {
       >
         <div className="flex flex-col h-full pt-24 px-10 overflow-y-auto">
           <div className="flex flex-col space-y-8">
-            {NAVIGATION.map((link) => (
+          {NAVIGATION.filter(link => link.label !== 'Startseite').map((link) => (
               <div key={link.label} className="flex flex-col space-y-4">
                 <a
                   href={`#${link.href}`}

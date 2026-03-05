@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import AboutSidebar from '../components/AboutSidebar';
 
 const members = [
   { name: 'Thorsten Hail', role: '1. Vorsitzender', emoji: '🧑‍💼' },
@@ -32,10 +33,14 @@ const MemberCard: React.FC<{ member: (typeof members)[number] }> = ({ member }) 
 );
 
 const Vorstand: React.FC = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+
   return (
     <div className="pt-32 pb-24 bg-[#f8f9f5]">
+      <AboutSidebar onToggle={setSidebarOpen} />
       <div className="container mx-auto px-6">
-        <header className="mb-16 text-center max-w-3xl mx-auto animate-fadeInUp">
+        <div className="flex flex-col">
+          <header className="mb-16 max-w-3xl mx-auto text-center animate-fadeInUp">
           <span className="text-[#ef4444] font-black text-xs uppercase tracking-[0.4em] mb-4 block">
             Vorstand
           </span>
@@ -77,6 +82,7 @@ const Vorstand: React.FC = () => {
             </div>
           </div>
         </section>
+          </div>
       </div>
     </div>
   );

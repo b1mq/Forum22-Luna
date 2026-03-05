@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MOVIES, SHOWTIMES } from '../constants';
 import MovieCard from '../components/MovieCard';
 import MovieDetailModal from '../components/MovieDetailModal';
@@ -7,6 +7,15 @@ import { Movie } from '../types';
 
 const Home: React.FC = () => {
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
+  const [showModal, setShowModal] = useState(true);
+  const [canClose, setCanClose] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setCanClose(true);
+    }, 1500); // wait 1.5 seconds before showing close button
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleBooking = (movieId: string, time: string) => {
     alert(`Tickets für Film ${movieId} um ${time} reserviert! (Simulation)`);
@@ -14,6 +23,12 @@ const Home: React.FC = () => {
 
   const openDetails = (movie: Movie) => {
     setSelectedMovie(movie);
+  };
+
+  const closeModal = () => {
+    if (canClose) {
+      setShowModal(false);
+    }
   };
 
   return (
@@ -222,6 +237,34 @@ const Home: React.FC = () => {
       </section>
 
       {/* Modal */}
+      {showModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-3xl shadow-2xl p-10 md:p-12 max-w-md md:max-w-lg mx-4 relative">
+            {canClose && (
+              <button
+                onClick={closeModal}
+                className="absolute top-4 right-4 w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200 z-50"
+                style={{ transform: 'translate(50%, -50%)' }}
+              >
+                ✕
+              </button>
+            )}
+            <div className="text-center pt-6">
+              <p className="text-lg text-gray-800 mb-6">
+                Möchten Sie die Kinos in Bad Urach und Metzingen besuchen?
+              </p>
+              <a
+                href="#/about/philosophy"
+                className="inline-flex items-center gap-2 bg-[#ef4444] text-white px-6 py-3 rounded-full font-bold hover:bg-[#d13b3b] transition-colors"
+              >
+                Wissen
+                <span>→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+
       {selectedMovie && (
         <MovieDetailModal movie={selectedMovie} onClose={() => setSelectedMovie(null)} />
       )}
