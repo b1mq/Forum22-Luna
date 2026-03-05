@@ -28,6 +28,15 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  // Close red logo dropdown when route (hash) changes
+  useEffect(() => {
+    const handleHashChange = () => {
+      setIsLogoMenuOpen(false);
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
   const closeMenu = () => setIsMobileMenuOpen(false);
 
   return (
@@ -59,7 +68,7 @@ const Navbar: React.FC = () => {
           <div className="hidden md:block absolute top-full left-0 mt-4 w-60 bg-[#3b0010] rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.7)] py-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-0 translate-y-2">
             <div className="flex flex-col space-y-3 px-6">
               <a
-                href="#geschichte"
+                href="/#/about/history"
                 className="text-white/90 hover:text-red-500 text-xs uppercase font-bold tracking-[0.2em] transition-all flex items-center gap-1"
               >
                 Geschichte
@@ -71,7 +80,7 @@ const Navbar: React.FC = () => {
                 Philosophie &amp; SJR
               </a>
               <a
-                href="#vorstand"
+                href="/#/about/vorstand"
                 className="text-white/90 hover:text-red-500 text-xs uppercase font-bold tracking-[0.2em] transition-all flex items-center gap-1"
               >
                 Vorstand
@@ -84,7 +93,7 @@ const Navbar: React.FC = () => {
             <div className="md:hidden absolute top-full left-0 mt-3 w-60 bg-[#3b0010] rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.7)] py-4">
               <div className="flex flex-col space-y-3 px-6">
                 <a
-                  href="#geschichte"
+                  href="/#/about/history"
                   onClick={() => setIsLogoMenuOpen(false)}
                   className="text-white/90 hover:text-red-500 text-xs uppercase font-bold tracking-[0.2em] transition-all flex items-center gap-1"
                 >
@@ -98,7 +107,7 @@ const Navbar: React.FC = () => {
                   Philosophie &amp; SJR
                 </a>
                 <a
-                  href="#vorstand"
+                  href="/#/about/vorstand"
                   onClick={() => setIsLogoMenuOpen(false)}
                   className="text-white/90 hover:text-red-500 text-xs uppercase font-bold tracking-[0.2em] transition-all flex items-center gap-1"
                 >

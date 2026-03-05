@@ -14,6 +14,8 @@ import CafeInfo from './pages/CafeInfo';
 import TeamInfo from './pages/TeamInfo';
 import SpecialEvents from './pages/SpecialEvents';
 import SJRPhilosophy from './pages/SJRPhilosophy';
+import History from './pages/History';
+import Vorstand from './pages/Vorstand';
 import DownloadProgram from './pages/DownloadProgram';
 import PatenschaftForm from './pages/PatenschaftForm';
 import FoerdervereinForm from './pages/FoerdervereinForm';
@@ -48,6 +50,8 @@ const App: React.FC = () => {
       case '#/about/cafe': return <CafeInfo />;
       case '#/about/team': return <TeamInfo />;
       case '#/about/philosophy': return <SJRPhilosophy />;
+      case '#/about/history': return <History />;
+      case '#/about/vorstand': return <Vorstand />;
       case '#/download/program': return <DownloadProgram />;
       case '#/download/patenschaft': return <PatenschaftForm />;
       case '#/download/foerderverein': return <FoerdervereinForm />;
